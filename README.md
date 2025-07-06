@@ -2,23 +2,54 @@
 
 ### Автотесты для проверки программы, которая помогает заказать бургер в Stellar Burgers
 
+Основа для написания автотестов — фреймворк **pytest**
+
 ### Реализованные сценарии
 
 Созданы юнит-тесты, покрывающие классы `Bun`, `Burger`, `Ingredient`, `Database`
 
 Процент покрытия 100% (отчет: `htmlcov/index.html`)
 
-### Структура проекта
+### Структура проекта:
 
-- `praktikum` - пакет, содержащий код программы
-- `tests` - пакет, содержащий тесты, разделенные по классам. Например, `bun_test.py`, `burger_test.py` и т.д.
+1. `praktikum` - пакет, содержащий код программы
+- bun.py - класс `Bun` (булки)
+- burger.py - класс `Burger` (бургеры)
+- database.py - класс `Database` (база данных всех ингредиентов для бургера)
+- ingredient.py - класс `Ingredient` (ингредиенты)
+2. `tests` - пакет, содержащий тесты, разделенные по классам.
+- test_bun.py - тесты класса `Bun`
+    - test_get_name_is_success - проверка задания наименований булок
+    - test_get_price - проверка задания стоимости булок
+    - test_change_name - проверка изменения наименования булки
+    - test_change_price - проверка изменения стоимости булки
+- test_burger.py - содержит тесты класса `Burger`
+    - test_set_buns - проверка добавления булки в бургер
+    - test_add_ingredient - проверка добавления ингредиента в бургер
+    - test_remove_ingredient - проверка удаления ингредиента из бургера
+    - test_move_ingredient - проверка перемещения ингредиентов в бургере
+    - test_get_price - проверка получения цены бургера
+    - test_get_receipt - проверка получения рецепта бургера
+- test_database.py - содержит тесты класса `Database`
+    - test_available_buns - проверка булок в базе данных
+    - test_test_available_ingredients - прверка ингредиентов в базе данных
+- test_ingredient.py - содержит тесты класса `Ingredient`
+    - test_get_price - проверка изменения стоимости ингредиента
+    - test_get_name - проверка изменения наименования ингредиента
+    - test_get_type - проверка изменения типа игредиента
+3. conftest.py содержит фикстуры моков булки и ингредиентов
+4. praktikum.py - содержит код создания бургера и печати рецепта
+5. requirements.txt содержит список зависимостей
 
 ### Запуск автотестов
 
+Команда для запуска тестов: `pytest -v`
+Команда для запуска выборочных тестов: `pytest <file_name.py>`
+
 **Установка зависимостей**
 
-> `$ pip install -r requirements.txt`
+`pip install -r requirements.txt`
 
 **Запуск автотестов и создание HTML-отчета о покрытии**
 
->  `$ pytest --cov=praktikum --cov-report=html`
+`pytest --cov=praktikum --cov-report=html`
